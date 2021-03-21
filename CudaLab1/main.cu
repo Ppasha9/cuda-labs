@@ -69,9 +69,9 @@ static float _gpuMult(double * m1, double * m2, size_t mSize, double * res)
     dim3 cudaThreads(CUDA_BLOCK_SIZE, CUDA_BLOCK_SIZE);
     dim3 cudaBlocks((mSize + cudaThreads.x - 1) / cudaThreads.x, (mSize + cudaThreads.y - 1) / cudaThreads.y);
 
-    cudaMalloc(reinterpret_cast<void**>(&cudaMemM1), matrixBytesNum);
-    cudaMalloc(reinterpret_cast<void**>(&cudaMemM2), matrixBytesNum);
-    cudaMalloc(reinterpret_cast<void**>(&cudaMemRes), matrixBytesNum);
+    cudaMalloc((void **) &cudaMemM1, matrixBytesNum);
+    cudaMalloc((void **) &cudaMemM2, matrixBytesNum);
+    cudaMalloc((void **) &cudaMemRes, matrixBytesNum);
 
     cudaEventCreate(&cudaStartEvent);
     cudaEventCreate(&cudaEndEvent);
